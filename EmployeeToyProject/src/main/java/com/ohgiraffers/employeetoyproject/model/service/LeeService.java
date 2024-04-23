@@ -3,6 +3,7 @@ package com.ohgiraffers.employeetoyproject.model.service;
 import com.ohgiraffers.employeetoyproject.model.dao.LeeMapper;
 import com.ohgiraffers.employeetoyproject.model.dto.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class LeeService {
         return leeMapper.findLastId();
     }
 
+    @Transactional
     public int registMember(EmployeeDTO newEmp) {
 
         return leeMapper.registMember(newEmp);
