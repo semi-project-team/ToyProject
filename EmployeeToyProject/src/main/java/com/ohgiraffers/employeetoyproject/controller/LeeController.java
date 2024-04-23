@@ -98,4 +98,7 @@ public class LeeController {
         return  leeService.findSal();
     }
 
+    @GetMapping("/update")
+    public void updatePage(){}
+
 }
