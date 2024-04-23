@@ -31,14 +31,14 @@ public class JungminController {
         return "jungmin/jungminPage";
     }
 
-    @GetMapping("/list")
+    @GetMapping("list")
     public String findMenuList(Model model) {
 
         List<EmployeeDTO> employeeList = jungminService.findAllMenus();
         // model 키와 밸류 필요
         model.addAttribute("employeeList", employeeList);
 
-        return "jungmin/list";
+        return "/jungmin/list";
     }
 
     @GetMapping("/find")
