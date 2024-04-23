@@ -3,5 +3,61 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ohgiraffers.employeetoyproject.model.dao.LeeMapper">
+    <resultMap id="employeeMap" type="com.ohgiraffers.employeetoyproject.model.dto.EmployeeDTO">
+        <id property="id" column="EMP_ID"/>
+        <result property="name" column="EMP_NAME"/>
+        <result property="empNo" column="EMP_NO"/>
+        <result property="email" column="EMAIL"/>
+        <result property="phone" column="PHONE"/>
+        <result property="deptCode" column="DEPT_CODE"/>
+        <result property="jobCode" column="JOB_CODE"/>
+        <result property="salLevel" column="SAL_LEVEL"/>
+        <result property="salary" column="SALARY"/>
+        <result property="bonus" column="BONUS"/>
+        <result property="managerId" column="MANAGER_ID"/>
+        <result property="hireDate" column="HIRE_DATE"/>
+        <result property="entDate" column="ENT_DATE"/>
+        <result property="entYn" column="ENT_YN"/>
+    </resultMap>
 
+    <resultMap id="departmentMap" type="com.ohgiraffers.employeetoyproject.model.dto.DepartmentDTO">
+        <id property="id" column="DEPT_ID"/>
+        <result property="title" column="DEPT_TITLE"/>
+        <result property="locationId" column="LOCATION_ID"/>
+    </resultMap>
+
+    <select id="departmentInfo" resultMap="departmentMap">
+        select
+            *
+        from
+            department
+    </select>
+    <resultMap id="jobMap" type="com.ohgiraffers.employeetoyproject.model.dto.JobDTO">
+        <id property="code" column="JOB_CODE"/>
+        <result property="name" column="JOB_NAME"/>
+    </resultMap>
+
+    <resultMap id="empJobMap" type="com.ohgiraffers.employeetoyproject.model.dto.EmpJobDTO">
+        <id property="name" column="EMP_NAME"/>
+        <result property="phone" column="PHONE"/>
+        <result property="email" column="EMAIL"/>
+        <association property="jobs" resultMap="jobMap"/>
+    </resultMap>
+
+    <select id="findEmpByDeptCode" resultMap="empJobMap" parameterType="string">
+        select
+            a.EMP_NAME,
+            a.PHONE,
+            a.EMAIL,
+            b.JOB_NAME
+        FROM
+            employee as a
+        join
+            job as b
+        on
+            a.JOB_CODE = b.JOB_CODE
+        WHERE
+            DEPT_CODE = #{deptCode}
+
+    </select>
 </mapper>
