@@ -1,7 +1,6 @@
 package com.ohgiraffers.employeetoyproject.model.dao;
 
-import com.ohgiraffers.employeetoyproject.model.dto.DepartmentDTO;
-import com.ohgiraffers.employeetoyproject.model.dto.EmpJobDTO;
+import com.ohgiraffers.employeetoyproject.model.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -11,4 +10,12 @@ public interface LeeMapper {
     List<DepartmentDTO> departmentInfo();
 
     List<EmpJobDTO> findEmpByDeptCode(String deptCode);
+
+    List<JobDTO> jobInfo();
+
+    String findLastId();
+
+    int registMember(EmployeeDTO newEmp);
+
+    List<SalDTO> findSal();
 }
