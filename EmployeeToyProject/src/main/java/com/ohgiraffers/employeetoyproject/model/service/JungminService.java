@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class JungminService {
@@ -19,5 +20,9 @@ public class JungminService {
     public List<EmployeeDTO> findAllMenus() {
 
         return jungminMapper.findAllMenus();
+    }
+    public List<EmployeeDTO> findBySalary(Map<String,Integer> param) {
+
+        return jungminMapper.findBySalry(param);
     }
 }

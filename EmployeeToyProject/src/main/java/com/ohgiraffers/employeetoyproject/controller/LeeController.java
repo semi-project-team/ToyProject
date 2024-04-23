@@ -90,7 +90,7 @@ public class LeeController {
             rttr.addFlashAttribute("failMessage",messageSource.getMessage("failMessage",null,locale));
         }
 
-        return "redirect:/list";
+        return "redirect:/jungmin/list";
     }
     @GetMapping(value = "/salLevel", produces = "application/json; charset='UTF-8'")
     @ResponseBody
