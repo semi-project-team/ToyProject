@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 style="text-align: center ; font-weight: bold">부서별 전체 조회</h1>
+    <form action="dept-select">
+        <select name="deptCode" id="deptCode"></select>
+        <input type="submit">
+    </form>
+
+    <script>
+        fetch("departmentCode")
+            .then(res=>res.json())
+            .then(data=>{
+                const $dept = document.getElementById('deptCode')
+                for (index in data){
+                    const $option = document.createElement('option');
+                    $option.value=data[index].id
+                    $option.textContent=data[index].title
+                    $dept.appendChild($option)
+                }
+
+            })
+
+
+    </script>
+</body>
+</html>
