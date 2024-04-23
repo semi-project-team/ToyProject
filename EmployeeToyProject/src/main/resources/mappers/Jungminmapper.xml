@@ -41,6 +41,14 @@
         order by
             EMP_ID
     </select>
+    <select id="findBySalry" resultMap="findAllMap" parameterType="hashmap">
+        select
+        *
+        from
+        employee
+        where
+        salary BETWEEN #{min} and #{max}
+    </select>
 </mapper>
 
 

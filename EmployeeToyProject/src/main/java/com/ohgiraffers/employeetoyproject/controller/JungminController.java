@@ -6,10 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
+@RequestMapping("/jungmin")
 public class JungminController {
 
     private final JungminService jungminService;
@@ -19,10 +25,10 @@ public class JungminController {
         this.jungminService = jungminService;
     }
 
-    @GetMapping("/jungmin")
+    @GetMapping()
     public String jungminPage() {
 
-        return "jungminPage";
+        return "jungmin/jungminPage";
     }
 
     @GetMapping("/list")
@@ -32,7 +38,23 @@ public class JungminController {
         // model 키와 밸류 필요
         model.addAttribute("employeeList", employeeList);
 
-        return "list";
+        return "jungmin/list";
     }
+
+    @GetMapping("/find")
+    public void find() {}
+    @PostMapping("/findSalary")
+    public String findBySalary(@RequestParam int minSalary, @RequestParam int maxSalary, Model model) {
+
+            Map<String,Integer> salRange = new HashMap<>();
+            salRange.put("min",minSalary);
+            salRange.put("max",maxSalary);
+            List<EmployeeDTO> employList = jungminService.findBySalary(salRange);
+            model.addAttribute("employeeList", employList);
+
+            return "jungmin/list";
+
+    }
+
 
 }
