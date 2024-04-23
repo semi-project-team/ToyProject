@@ -1,8 +1,7 @@
 package com.ohgiraffers.employeetoyproject.model.service;
 
 import com.ohgiraffers.employeetoyproject.model.dao.LeeMapper;
-import com.ohgiraffers.employeetoyproject.model.dto.DepartmentDTO;
-import com.ohgiraffers.employeetoyproject.model.dto.EmpJobDTO;
+import com.ohgiraffers.employeetoyproject.model.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,5 +21,23 @@ public class LeeService {
 
     public List<EmpJobDTO> findEmpByDeptCode(String deptCode) {
         return leeMapper.findEmpByDeptCode(deptCode);
+    }
+
+    public List<JobDTO> jobInfo() {
+        return leeMapper.jobInfo();
+    }
+
+    public String findLastId() {
+
+        return leeMapper.findLastId();
+    }
+
+    public int registMember(EmployeeDTO newEmp) {
+
+        return leeMapper.registMember(newEmp);
+    }
+
+    public List<SalDTO> findSal() {
+        return leeMapper.findSal();
     }
 }

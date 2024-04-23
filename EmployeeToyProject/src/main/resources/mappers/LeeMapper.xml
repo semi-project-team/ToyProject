@@ -60,4 +60,37 @@
             DEPT_CODE = #{deptCode}
 
     </select>
+
+    <select id="jobInfo" resultMap="jobMap">
+        select
+            *
+        from
+            job
+    </select>
+
+    <select id="findLastId">
+        select
+            max(EMP_ID)
+        FROM
+            employee
+    </select>
+
+    <insert id="registMember" parameterType="com.ohgiraffers.employeetoyproject.model.dto.EmployeeDTO">
+        insert into employee(EMP_ID,EMP_NAME,EMP_NO,EMAIL,PHONE,DEPT_CODE,JOB_CODE,SAL_LEVEL,HIRE_DATE)
+        values (#{id},#{name},#{empNo},#{email},#{phone},#{deptCode},#{jobCode},#{salLevel},#{hireDate})
+
+    </insert>
+
+    <resultMap id="salMap" type="com.ohgiraffers.employeetoyproject.model.dto.SalDTO">
+        <id property="level" column="SAL_LEVEL"/>
+        <result property="minSal" column="MIN_SAL"/>
+        <result property="maxSal" column="MAX_SAL"/>
+    </resultMap>
+
+    <select id="findSal" resultMap="salMap">
+        select
+            *
+        from
+            sal_grade
+    </select>
 </mapper>
