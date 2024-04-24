@@ -93,4 +93,13 @@
         from
             sal_grade
     </select>
+    <select id="getMember" resultMap="employeeMap" parameterType="string">
+        select
+            *
+        from
+            employee
+        where
+            EMP_ID = #{200}
+    </select>
+
 </mapper>

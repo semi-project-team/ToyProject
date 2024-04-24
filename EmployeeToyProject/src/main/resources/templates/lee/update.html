@@ -6,21 +6,36 @@
 </head>
 <body>
     <div th:replace="/common/nav.html"></div>
-    <h1>정보 수정하기</h1>
-    <form action="checkMember">
+    <form action="checkMember" id="checkMember">
         사원번호 입력 : <input type="text" name="id" id="id" placeholder="사원번호 입력" minlength="3" maxlength="3"> <input type="submit" value="회원 확인">
         <div id="hiddenBox" style="color: red">3자리 숫자를 입력하세요</div>
     </form>
 
+    <th:block th:if="${isMember==true}">
+        <form action="updateMember">
+            <h1>정보 수정</h1>
+            이름 : <input type="text" name="name">
+
+        </form>
+        <script>
+            const $checkBox = document.getElementById('checkMember')
+            $checkBox.style.display='none'
+        </script>
+    </th:block>
+
+
+
     <script>
         const $hiddenBox = document.getElementById("hiddenBox");
         const $id = document.getElementById('id');
-        if($id.value.length<3){
-            $hiddenBox.style.visibility="none";
-        }
-        else{
-            $hiddenBox.style.visibility = "hidden";
-        }
+        $id.addEventListener("keydown", e=>{
+            if(e.currentTarget.value.length<3){
+                $hiddenBox.style.display='block'
+            }
+            else{
+                $hiddenBox.style.display='none'
+            }
+        })
 
     </script>
     
