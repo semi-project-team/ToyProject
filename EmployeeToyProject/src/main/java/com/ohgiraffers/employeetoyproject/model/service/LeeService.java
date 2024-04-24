@@ -42,4 +42,19 @@ public class LeeService {
     public List<SalDTO> findSal() {
         return leeMapper.findSal();
     }
+
+    public boolean checkTheMember(String id) {
+
+        EmployeeDTO checkEmp = leeMapper.getMember(id);
+
+        if(checkEmp.getId().isEmpty()){
+            return false;
+
+        }
+        else{
+            return true;
+        }
+
+
+    }
 }

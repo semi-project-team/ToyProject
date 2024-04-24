@@ -18,4 +18,6 @@ public interface LeeMapper {
     int registMember(EmployeeDTO newEmp);
 
     List<SalDTO> findSal();
+
+    EmployeeDTO getMember(String id);
 }

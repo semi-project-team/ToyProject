@@ -101,4 +101,16 @@ public class LeeController {
     @GetMapping("/update")
     public void updatePage(){}
 
+    @GetMapping("/checkMember")
+    public String checkTheMember(@RequestParam String id,Model model){
+        boolean isMember = leeService.checkTheMember(id);
+
+        model.addAttribute("isMember",isMember);
+        return "/lee/update";
+    }
+
+    @GetMapping("/updateMember")
+    public String update(){
+        return "/";
+    }
 }
